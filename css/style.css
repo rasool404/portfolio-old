@@ -1200,25 +1200,6 @@ body.lock {
 		        transform: rotate(360deg);
 	}
 }
-.border {
-	position: fixed;
-	width: 100%;
-	height: 100%;
-	top: 0;
-	left: 0;
-	border: 5px solid #f6f2d4;
-	z-index: 500;
-	-webkit-transition: all 0.5s ease;
-	-o-transition: all 0.5s ease;
-	transition: all 0.5s ease;
-	pointer-events: none;
-}
-@media (min-width: 767.98px) {
-	.border {
-		border-right: none;
-	}
-}
-
 .title {
 	font-size: 40px;
 	color: #fff;

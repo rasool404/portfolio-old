@@ -1,6 +1,4 @@
 $(document).ready(function () {
-  $(".loader").addClass("hide");
-  $("body").removeClass("lock");
   let iconMenu = document.querySelector(".icon-menu");
   let menuBody = document.querySelector(".menu__body");
   let headerRow = document.querySelector(".header__row");
@@ -11,6 +9,8 @@ $(document).ready(function () {
       headerRow.classList.toggle("active");
     });
   }
+
+  $(".loader").addClass("hide");
 
   window.addEventListener("scroll", function () {
     const navScroll = document.getElementById("header");
@@ -31,6 +31,8 @@ $(document).ready(function () {
       },
     ],
   });
+  $(".loader").addClass("hide");
+  $("body").removeClass("lock");
 
   $(".goto").click(function () {
     var el = $(this).attr("href").replace("#", "");
@@ -176,239 +178,203 @@ $(document).ready(function () {
 
   AOS.init({});
 
-  //FORMS
-  function forms() {
-    //FIELDS
-    $("input,textarea").focus(function () {
-      if ($(this).val() == $(this).attr("data-value")) {
-        $(this).addClass("focus");
-        $(this).parent().addClass("focus");
+});
+
+//FORMS
+function forms() {
+  //FIELDS
+  $("input,textarea").focus(function () {
+    if ($(this).val() == $(this).attr("data-value")) {
+      $(this).addClass("focus");
+      $(this).parent().addClass("focus");
+      if ($(this).attr("data-type") == "pass") {
+        $(this).attr("type", "password");
+      }
+      $(this).val("");
+    }
+    removeError($(this));
+  });
+  $("input[data-value], textarea[data-value]").each(function () {
+    if (this.value == "" || this.value == $(this).attr("data-value")) {
+      if (
+        $(this).hasClass("l") &&
+        $(this).parent().find(".form__label").length == 0
+      ) {
+        $(this)
+          .parent()
+          .append(
+            '<div class="form__label">' + $(this).attr("data-value") + "</div>"
+          );
+      } else {
+        this.value = $(this).attr("data-value");
+      }
+    }
+    if (this.value != $(this).attr("data-value") && this.value != "") {
+      $(this).addClass("focus");
+      $(this).parent().addClass("focus");
+      if (
+        $(this).hasClass("l") &&
+        $(this).parent().find(".form__label").length == 0
+      ) {
+        $(this)
+          .parent()
+          .append(
+            '<div class="form__label">' + $(this).attr("data-value") + "</div>"
+          );
+      }
+    }
+
+    $(this).click(function () {
+      if (this.value == $(this).attr("data-value")) {
         if ($(this).attr("data-type") == "pass") {
           $(this).attr("type", "password");
         }
-        $(this).val("");
+        this.value = "";
       }
-      removeError($(this));
     });
-    $("input[data-value], textarea[data-value]").each(function () {
-      if (this.value == "" || this.value == $(this).attr("data-value")) {
-        if (
-          $(this).hasClass("l") &&
-          $(this).parent().find(".form__label").length == 0
-        ) {
-          $(this)
-            .parent()
-            .append(
-              '<div class="form__label">' +
-                $(this).attr("data-value") +
-                "</div>"
-            );
-        } else {
+    $(this).blur(function () {
+      if (this.value == "") {
+        if (!$(this).hasClass("l")) {
           this.value = $(this).attr("data-value");
         }
-      }
-      if (this.value != $(this).attr("data-value") && this.value != "") {
-        $(this).addClass("focus");
-        $(this).parent().addClass("focus");
-        if (
-          $(this).hasClass("l") &&
-          $(this).parent().find(".form__label").length == 0
-        ) {
-          $(this)
-            .parent()
-            .append(
-              '<div class="form__label">' +
-                $(this).attr("data-value") +
-                "</div>"
-            );
+        $(this).removeClass("focus");
+        $(this).parent().removeClass("focus");
+        if ($(this).attr("data-type") == "pass") {
+          $(this).attr("type", "text");
         }
       }
-
-      $(this).click(function () {
-        if (this.value == $(this).attr("data-value")) {
-          if ($(this).attr("data-type") == "pass") {
-            $(this).attr("type", "password");
-          }
-          this.value = "";
-        }
-      });
-      $(this).blur(function () {
-        if (this.value == "") {
-          if (!$(this).hasClass("l")) {
-            this.value = $(this).attr("data-value");
-          }
-          $(this).removeClass("focus");
-          $(this).parent().removeClass("focus");
-          if ($(this).attr("data-type") == "pass") {
-            $(this).attr("type", "text");
-          }
-        }
-        if ($(this).hasClass("vn")) {
-          formValidate($(this));
-        }
-      });
+      if ($(this).hasClass("vn")) {
+        formValidate($(this));
+      }
     });
-  }
-  forms();
+  });
+}
+forms();
 
-  //VALIDATE FORMS
-  $("form button[type=submit]").click(function () {
-    var er = 0;
-    var form = $(this).parents("form");
-    var ms = form.data("ms");
-    $.each(form.find(".req"), function (index, val) {
-      er += formValidate($(this));
-    });
-    if (er == 0) {
-      removeFormError(form);
+//VALIDATE FORMS
+$("form button[type=submit]").click(function () {
+  var er = 0;
+  var form = $(this).parents("form");
+  var ms = form.data("ms");
+  $.each(form.find(".req"), function (index, val) {
+    er += formValidate($(this));
+  });
+  if (er == 0) {
+    removeFormError(form);
 
-      if (ms != null && ms != "") {
-        showMessageByClass(ms);
-        return false;
-      }
-    } else {
+    if (ms != null && ms != "") {
+      showMessageByClass(ms);
       return false;
     }
-  });
-  function formValidate(input) {
-    var er = 0;
-    var form = input.parents("form");
-    if (input.attr("name") == "email" || input.hasClass("email")) {
-      if (input.val() != input.attr("data-value")) {
-        var em = input.val().replace(" ", "");
-        input.val(em);
-      }
-      if (
-        !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/.test(input.val()) ||
-        input.val() == input.attr("data-value")
-      ) {
-        er++;
-        addError(input);
-      } else {
-        removeError(input);
-      }
+  } else {
+    return false;
+  }
+});
+function formValidate(input) {
+  var er = 0;
+  var form = input.parents("form");
+  if (input.attr("name") == "email" || input.hasClass("email")) {
+    if (input.val() != input.attr("data-value")) {
+      var em = input.val().replace(" ", "");
+      input.val(em);
+    }
+    if (
+      !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/.test(input.val()) ||
+      input.val() == input.attr("data-value")
+    ) {
+      er++;
+      addError(input);
     } else {
-      if (input.val() == "" || input.val() == input.attr("data-value")) {
-        er++;
-        addError(input);
-      } else {
-        removeError(input);
-      }
+      removeError(input);
     }
-    if (input.attr("type") == "checkbox") {
-      if (input.prop("checked") == true) {
-        input.removeClass("err").parent().removeClass("err");
-      } else {
-        er++;
-        input.addClass("err").parent().addClass("err");
-      }
-    }
-    if (input.hasClass("name")) {
-      if (!/^[А-Яа-яa-zA-Z-]+( [А-Яа-яa-zA-Z-]+)$/.test(input.val())) {
-        er++;
-        addError(input);
-      }
-    }
-    if (input.hasClass("pass-2")) {
-      if (form.find(".pass-1").val() != form.find(".pass-2").val()) {
-        addError(input);
-      } else {
-        removeError(input);
-      }
-    }
-    return er;
-  }
-
-  function addError(input) {
-    input.addClass("err");
-    input.parent().addClass("err");
-    input.parent().find(".form__error").remove();
-    if (input.hasClass("email")) {
-      var error = "";
-      if (input.val() == "" || input.val() == input.attr("data-value")) {
-        error = input.data("error");
-      } else {
-        error = input.data("error");
-      }
-      if (error != null) {
-        input.parent().append('<div class="form__error">' + error + "</div>");
-      }
+  } else {
+    if (input.val() == "" || input.val() == input.attr("data-value")) {
+      er++;
+      addError(input);
     } else {
-      if (
-        input.data("error") != null &&
-        input.parent().find(".form__error").length == 0
-      ) {
-        input
-          .parent()
-          .append('<div class="form__error">' + input.data("error") + "</div>");
-      }
-    }
-    if (input.parents(".select-block").length > 0) {
-      input.parents(".select-block").parent().addClass("err");
-      input.parents(".select-block").find(".select").addClass("err");
+      removeError(input);
     }
   }
-  function addErrorByName(form, input__name, error_text) {
-    var input = form.find('[name="' + input__name + '"]');
-    input.attr("data-error", error_text);
-    addError(input);
+  if (input.attr("type") == "checkbox") {
+    if (input.prop("checked") == true) {
+      input.removeClass("err").parent().removeClass("err");
+    } else {
+      er++;
+      input.addClass("err").parent().addClass("err");
+    }
   }
-  function addFormError(form, error_text) {
-    form.find(".form__generalerror").show().html(error_text);
+  if (input.hasClass("name")) {
+    if (!/^[А-Яа-яa-zA-Z-]+( [А-Яа-яa-zA-Z-]+)$/.test(input.val())) {
+      er++;
+      addError(input);
+    }
   }
-  function removeFormError(form) {
-    form.find(".form__generalerror").hide().html("");
+  if (input.hasClass("pass-2")) {
+    if (form.find(".pass-1").val() != form.find(".pass-2").val()) {
+      addError(input);
+    } else {
+      removeError(input);
+    }
   }
-  function removeError(input) {
-    input.removeClass("err");
-    input.parent().removeClass("err");
-    input.parent().find(".form__error").remove();
+  return er;
+}
 
-    if (input.parents(".select-block").length > 0) {
-      input.parents(".select-block").parent().removeClass("err");
+function addError(input) {
+  input.addClass("err");
+  input.parent().addClass("err");
+  input.parent().find(".form__error").remove();
+  if (input.hasClass("email")) {
+    var error = "";
+    if (input.val() == "" || input.val() == input.attr("data-value")) {
+      error = input.data("error");
+    } else {
+      error = input.data("error");
+    }
+    if (error != null) {
+      input.parent().append('<div class="form__error">' + error + "</div>");
+    }
+  } else {
+    if (
+      input.data("error") != null &&
+      input.parent().find(".form__error").length == 0
+    ) {
       input
-        .parents(".select-block")
-        .find(".select")
-        .removeClass("err")
-        .removeClass("active");
-      //input.parents('.select-block').find('.select-options').hide();
+        .parent()
+        .append('<div class="form__error">' + input.data("error") + "</div>");
     }
   }
-  function removeFormErrors(form) {
-    form.find(".err").removeClass("err");
-    form.find(".form__error").remove();
+  if (input.parents(".select-block").length > 0) {
+    input.parents(".select-block").parent().addClass("err");
+    input.parents(".select-block").find(".select").addClass("err");
   }
-});
+}
+function addErrorByName(form, input__name, error_text) {
+  var input = form.find('[name="' + input__name + '"]');
+  input.attr("data-error", error_text);
+  addError(input);
+}
+function addFormError(form, error_text) {
+  form.find(".form__generalerror").show().html(error_text);
+}
+function removeFormError(form) {
+  form.find(".form__generalerror").hide().html("");
+}
+function removeError(input) {
+  input.removeClass("err");
+  input.parent().removeClass("err");
+  input.parent().find(".form__error").remove();
 
-const ANIMATEDCLASSNAME = "animated";
-const ELEMENTS = document.querySelectorAll(".HOVER");
-const ELEMENTS_SPAN = [];
-
-ELEMENTS.forEach((element, index) => {
-  let addAnimation = false;
-  // Elements that contain the "FLASH" class, add a listener to remove
-  // animation-class when the animation ends
-  if (element.classList[1] == "FLASH") {
-    element.addEventListener("animationend", (e) => {
-      element.classList.remove(ANIMATEDCLASSNAME);
-    });
-    addAnimation = true;
+  if (input.parents(".select-block").length > 0) {
+    input.parents(".select-block").parent().removeClass("err");
+    input
+      .parents(".select-block")
+      .find(".select")
+      .removeClass("err")
+      .removeClass("active");
+    //input.parents('.select-block').find('.select-options').hide();
   }
-
-  // If The span element for this element does not exist in the array, add it.
-  if (!ELEMENTS_SPAN[index])
-    ELEMENTS_SPAN[index] = element.querySelector("span");
-
-  element.addEventListener("mouseover", (e) => {
-    ELEMENTS_SPAN[index].style.left = e.pageX - element.offsetLeft + "px";
-    ELEMENTS_SPAN[index].style.top = e.pageY - element.offsetTop + "px";
-
-    // Add an animation-class to animate via CSS.
-    if (addAnimation) element.classList.add(ANIMATEDCLASSNAME);
-  });
-
-  element.addEventListener("mouseout", (e) => {
-    ELEMENTS_SPAN[index].style.left = e.pageX - element.offsetLeft + "px";
-    ELEMENTS_SPAN[index].style.top = e.pageY - element.offsetTop + "px";
-  });
-});
+}
+function removeFormErrors(form) {
+  form.find(".err").removeClass("err");
+  form.find(".form__error").remove();
+}
