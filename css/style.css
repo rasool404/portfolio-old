@@ -393,6 +393,7 @@ body.lock {
 		color: #000000;
 		padding: 0px 0px 0px 0px;
 		font-size: 30px;
+		text-align: center;
 	}
 }
 
@@ -1259,12 +1260,19 @@ body.lock {
 }
 .contact__form {
 	display: block;
+	margin: 0px 50px 0px 0px;
+}
+@media (min-width: 1192px) {
+	.contact__form {
+		width: 80%;
+	}
 }
 .contact__form p {
 	font-size: 17px;
 	color: #fff;
 	margin: 0px 0px 20px 0px;
 	font-weight: bold;
+	line-height: 25px;
 }
 .contact__form.err {
 	-webkit-animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
@@ -1292,6 +1300,7 @@ body.lock {
 	color: #fff;
 	font-weight: bold;
 	margin: 30px 0px 40px 0px;
+	line-height: 25px;
 }
 .contact__social .social {
 	display: -webkit-box;
@@ -1351,6 +1360,7 @@ body.lock {
 	padding: 20px 25px;
 	margin: 0px 0px 20px 0px;
 	width: 100%;
+	min-width: 500px;
 	border-top: 5px solid #00c4f0;
 	font-size: 20px;
 	font-family: Arodora;
@@ -1481,4 +1491,66 @@ body.lock {
 		-webkit-transform: translate3d(4px, 0, 0);
 		        transform: translate3d(4px, 0, 0);
 	}
+}
+.select {
+	position: relative;
+	min-width: 200px;
+}
+.select svg {
+	position: absolute;
+	right: 12px;
+	top: calc(50% - 3px);
+	width: 10px;
+	height: 6px;
+	stroke-width: 2px;
+	stroke: #9098a9;
+	fill: none;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	pointer-events: none;
+}
+.select select {
+	-webkit-appearance: none;
+	padding: 7px 50px 7px 12px;
+	width: 100%;
+	border: 1px solid #e8eaed;
+	border-radius: 5px;
+	background: #fff;
+	-webkit-box-shadow: 0 1px 3px -2px #9098a9;
+	        box-shadow: 0 1px 3px -2px #9098a9;
+	cursor: pointer;
+	font-family: inherit;
+	font-size: 16px;
+	-webkit-transition: all 150ms ease;
+	-o-transition: all 150ms ease;
+	transition: all 150ms ease;
+}
+.select select:required:invalid {
+	color: #5a667f;
+}
+.select select option {
+	color: #223254;
+}
+.select select option[value=""][disabled] {
+	display: none;
+}
+.select select:focus {
+	outline: none;
+	border-color: #07f;
+	-webkit-box-shadow: 0 0 0 2px rgba(0, 119, 255, 0.2);
+	        box-shadow: 0 0 0 2px rgba(0, 119, 255, 0.2);
+}
+.select select:hover + svg {
+	stroke: #07f;
+}
+
+.sprites {
+	position: absolute;
+	width: 0;
+	height: 0;
+	pointer-events: none;
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	    -ms-user-select: none;
+	        user-select: none;
 }
