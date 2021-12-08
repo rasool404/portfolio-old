@@ -1,11 +1,11 @@
 const langArr = {
   "header-home": {
     en: "Home",
-    ru: "Домой",
+    ru: "Главная",
   },
   "header-skills": {
     en: "Skills & Tools",
-    ru: "Навыки & Инструменты",
+    ru: "Навыки & Технологии",
   },
   "header-about": {
     en: "About me",
@@ -34,7 +34,7 @@ const langArr = {
   "header-descr": {
     en: `I've been doing front-end development for a year now. Do you need a
     site layout, or maybe a turnkey website? Then contact me`,
-    ru: `Уже год занимаюсь фронтенд-разработкой. Вам нужен
+    ru: `Уже год занимаюсь фронтенд-разработкой. Вам нужнa
     верстка сайта, а может сайт под ключ? Тогда свяжитесь со мной`,
   },
   "header-btn": {
@@ -43,13 +43,12 @@ const langArr = {
   },
   "skills-title": {
     en: "SKILLS & TOOLS",
-    ru: "Навыки & Инструменты",
+    ru: "Навыки & Технологии",
   },
   "skills-descr": {
     en: `The skills, tools and technologies I use to bring your products to
     life:`,
-    ru: `Навыки, инструменты и технологии, которые я использую, чтобы представить вашу продукцию
-    жизнь:`,
+    ru: `Навыки, инструменты и технологии, которые я использую, чтобы оживить вашу продукты:`,
   },
   "currently-title": {
     en: "Currently working on:",
@@ -86,14 +85,14 @@ const langArr = {
     and uniquely as possible, taking into account all the edits and
     wishes. By trusting me, you will get the maximum return for your
     project, save your nerves and time.`,
-    ru: `<span> Фронтенд-разработчик, движимый любопытством </span>
+    ru: `<span> Фронтенд-разработчик</span>
     Я с энтузиазмом отношусь к техническим и визуальным
     аспектам цифровых продуктов. User Experience, красивые
-    пиксели и написание чистого, доступного, человеческого кода имеют значение для меня. я
-    попотеть в деталях. <br />
+    пиксели и написание чистого, доступного, человеческого кода имеют значение для меня. Я
+    уделяю особое внимание к деталям. <br />
     <br />
     Я счастлив, когда создаю, учусь, исследую и думаю
-    о том, как улучшить положение. <br />
+    о том, как улучшить что-то. <br />
     <br />
     Почему программирование? Все элементарно - мне это нравится,
     профессия будущего, благодаря которой я могу обеспечить себя
@@ -104,7 +103,7 @@ const langArr = {
     халатность. Я полностью изучаю проект, клиента и его цель. Работаю на качество, стараюсь сделать заказ максимально быстро
     и по возможности однозначно с учетом всех правок и
     пожеланий. Доверившись мне, вы получите максимальную отдачу от
-    проектф, сэкономите нервы и время.`,
+    проекта, сэкономите нервы и время.`,
   },
   "works-title": {
     en: "Works",
@@ -160,7 +159,7 @@ const langArr = {
   },
   "contact-descr": {
     en: "Get In Touch",
-    ru: "Написать",
+    ru: "Написать мне",
   },
   "contact-text": {
     en: `I am available to work on your projects and bring your ideas to

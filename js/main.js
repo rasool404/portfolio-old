@@ -13,6 +13,7 @@ $(document).ready(function () {
   $(".loader").addClass("hide");
 
   makeHeaderFixed();
+  identifyActiveAnchor();
 
   $(".portfolio__slider").slick({
     dots: true,
@@ -32,7 +33,7 @@ $(document).ready(function () {
 
   $(".goto").click(function () {
     var el = $(this).attr("href").replace("#", "");
-    var offset = -100;
+    var offset = -$(".header__row").height();
     $("body,html").animate(
       { scrollTop: $("." + el).offset().top + offset },
       500,
@@ -422,4 +423,29 @@ function makeHeaderFixed() {
 
     navScroll.classList.toggle("fixed", window.scrollY > 5);
   });
+}
+
+function identifyActiveAnchor() {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          document.querySelectorAll(".menu__link").forEach((link) => {
+            link.classList.toggle(
+              "active",
+              link.getAttribute("href").replace("#", "") ===
+                entry.target.className
+            );
+          });
+        }
+      });
+    },
+    {
+      threshold: 0.6,
+    }
+  );
+
+  document
+    .querySelectorAll("section")
+    .forEach((section) => observer.observe(section));
 }

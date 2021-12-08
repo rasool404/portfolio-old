@@ -52,13 +52,10 @@
                 ></a>
               </li>
               <li>
-                <a href="#about" class="menu__link goto lng-header-skills"></a>
+                <a href="#skills" class="menu__link goto lng-header-skills"></a>
               </li>
               <li>
-                <a
-                  href="#about__info"
-                  class="menu__link goto lng-header-about"
-                ></a>
+                <a href="#about" class="menu__link goto lng-header-about"></a>
               </li>
               <li>
                 <a
@@ -73,18 +70,12 @@
                 ></a>
               </li>
               <li>
-                <label class="select" for="lang">
-                  <select id="lang">
-                    <option value="en" selected>En</option>
-                    <option value="ru">Ru</option>
+                <div class="select">
+                  <select>
+                    <option value="en" selected>English</option>
+                    <option value="ru">Русский</option>
                   </select>
-                  <svg>
-                    <use xlink:href="#select-arrow-down"></use></svg></label
-                ><svg class="sprites">
-                  <symbol id="select-arrow-down" viewbox="0 0 10 6">
-                    <polyline points="1 1 5 5 9 1"></polyline>
-                  </symbol>
-                </svg>
+                </div>
               </li>
             </ul>
           </nav>
@@ -96,7 +87,7 @@
       <span></span>
       <span></span>
     </div>
-    <div class="header__body">
+    <section class="header__body">
       <div class="header__greeting">
         <h2 class="lng-header-greeting-title"></h2>
         <h1 class="lng-header-greeting-name"></h1>
@@ -105,15 +96,16 @@
 
         <a href="#contact" class="header__btn goto lng-header-btn"></a>
       </div>
-    </div>
+    </section>
   </div>
 </header>
 <div id="particles"></div>
-      <div class="about">
+
+      <section class="skills">
         <div class="container">
           <h2 class="title lng-skills-title"></h2>
           <h3 class="sub-title lng-skills-descr"></h3>
-          <div class="about__skills skills">
+          <div class="skills__row">
             <div class="skills__block">
               <div class="skills__logo">
                 <i class="devicon-html5-plain"></i>
@@ -191,15 +183,18 @@
             <div class="sub-title lng-currently-title"></div>
             <p class="lng-currently-descr"></p>
           </div>
-          <div class="about__info">
-            <div class="container">
-              <h2 class="about__info-title lng-about-title"></h2>
-              <p class="about__info-text lng-about-text"></p>
-            </div>
+        </div>
+      </section>
+      <div class="angle angle4"></div>
+      <section class="about">
+        <div class="container">
+          <div class="about__block">
+            <h2 class="about__title lng-about-title"></h2>
+            <p class="about__text lng-about-text"></p>
           </div>
         </div>
-      </div>
-      <div class="portfolio">
+      </section>
+      <section class="portfolio">
         <div class="container">
           <h2 class="title lng-works-title"></h2>
           <h3 class="sub-title lng-works-descr"></h3>
@@ -328,8 +323,8 @@
           </div>
           <div class="slider__dots"></div>
         </div>
-      </div>
-      <div class="contact">
+      </section>
+      <section class="contact">
         <div class="container">
           <div class="title lng-contact-title"></div>
           <div class="sub-title lng-contact-descr"></div>
@@ -341,7 +336,6 @@
               class="contact__form"
             >
               <p class="lng-contact-form-text"></p>
-
               <input
                 autocomplete="off"
                 type="text"
@@ -349,6 +343,7 @@
                 data-value="Name*"
                 class="input req"
               />
+              <div class="error">Name is required</div>
               <input
                 autocomplete="off"
                 type="text"
@@ -356,12 +351,14 @@
                 data-value="Email*"
                 class="input req email"
               />
+              <div class="error">Email is required</div>
               <textarea
                 name="Message"
                 class="input textarea req"
                 data-value="Message*"
                 rows="5"
               ></textarea>
+              <div class="error">Message is required</div>
               <button
                 type="submit"
                 class="button lng-contact-form-btn"
@@ -396,7 +393,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </section>
 <footer class="footer">
   <div class="container">
     <div class="footer__row">
