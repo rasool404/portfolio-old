@@ -35,7 +35,7 @@ const langArr = {
     en: `I've been doing front-end development for a year now. Do you need a
     site layout, or maybe a turnkey website? Then contact me`,
     ru: `Уже год занимаюсь фронтенд-разработкой. Вам нужнa
-    верстка сайта, а может сайт под ключ? Тогда свяжитесь со мной`,
+    верстка сайта? А может сайт под ключ? Тогда свяжитесь со мной`,
   },
   "header-btn": {
     en: "Contact Me",
@@ -161,7 +161,7 @@ const langArr = {
   },
   "contact-form-text": {
     en: "Fill in your info in the form below and I look forward to hearing from you!",
-    ru: "Заполните свою информацию в форме ниже, и я с нетерпением жду вашего ответа!",
+    ru: "Заполните свою информацию в форме ниже, я с нетерпением жду вашего ответа!",
   },
   "contact-form-btn": {
     en: "send email",

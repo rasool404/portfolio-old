@@ -246,9 +246,9 @@ $(document).ready(function () {
 
   //VALIDATE FORMS
   $("form button[type=submit]").click(function () {
-    const er = 0;
-    const form = $(this).parents("form");
-    const ms = form.data("ms");
+    var er = 0;
+    var form = $(this).parents("form");
+    let ms = form.data("ms");
     $.each(form.find(".req"), function (index, val) {
       er += formValidate($(this));
     });
@@ -264,11 +264,11 @@ $(document).ready(function () {
     }
   });
   function formValidate(input) {
-    const er = 0;
-    const form = input.parents("form");
+    var er = 0;
+    var form = input.parents("form");
     if (input.attr("name") == "email" || input.hasClass("email")) {
       if (input.val() != input.attr("data-value")) {
-        const em = input.val().replace(" ", "");
+        var em = input.val().replace(" ", "");
         input.val(em);
       }
       if (
@@ -317,7 +317,7 @@ $(document).ready(function () {
     input.parent().addClass("err");
     input.parent().find(".form__error").remove();
     if (input.hasClass("email")) {
-      const error = "";
+      var error = "";
       if (input.val() == "" || input.val() == input.attr("data-value")) {
         error = input.data("error");
       } else {
@@ -342,7 +342,7 @@ $(document).ready(function () {
     }
   }
   function addErrorByName(form, input__name, error_text) {
-    const input = form.find('[name="' + input__name + '"]');
+    var input = form.find('[name="' + input__name + '"]');
     input.attr("data-error", error_text);
     addError(input);
   }
