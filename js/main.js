@@ -32,8 +32,13 @@ $(document).ready(function () {
   $("body").removeClass("lock");
 
   $(".goto").click(function () {
-    var el = $(this).attr("href").replace("#", "");
-    var offset = -$(".header__row").height();
+    const el = $(this).attr("href").replace("#", "");
+    let offset;
+    if ($(window).width() > 767) {
+      offset = -$(".header__row").height();
+    } else {
+      offset = 0;
+    }
     $("body,html").animate(
       { scrollTop: $("." + el).offset().top + offset },
       500,
@@ -50,7 +55,7 @@ $(document).ready(function () {
   particlesJS("particles", {
     particles: {
       number: {
-        value: 50,
+        value: 70,
         density: {
           enable: true,
           value_area: 800,
@@ -164,8 +169,6 @@ $(document).ready(function () {
     },
   });
 
-  AOS.init({});
-
   //FORMS
   function forms() {
     //FIELDS
@@ -243,9 +246,9 @@ $(document).ready(function () {
 
   //VALIDATE FORMS
   $("form button[type=submit]").click(function () {
-    var er = 0;
-    var form = $(this).parents("form");
-    var ms = form.data("ms");
+    const er = 0;
+    const form = $(this).parents("form");
+    const ms = form.data("ms");
     $.each(form.find(".req"), function (index, val) {
       er += formValidate($(this));
     });
@@ -261,11 +264,11 @@ $(document).ready(function () {
     }
   });
   function formValidate(input) {
-    var er = 0;
-    var form = input.parents("form");
+    const er = 0;
+    const form = input.parents("form");
     if (input.attr("name") == "email" || input.hasClass("email")) {
       if (input.val() != input.attr("data-value")) {
-        var em = input.val().replace(" ", "");
+        const em = input.val().replace(" ", "");
         input.val(em);
       }
       if (
@@ -314,7 +317,7 @@ $(document).ready(function () {
     input.parent().addClass("err");
     input.parent().find(".form__error").remove();
     if (input.hasClass("email")) {
-      var error = "";
+      const error = "";
       if (input.val() == "" || input.val() == input.attr("data-value")) {
         error = input.data("error");
       } else {
@@ -339,7 +342,7 @@ $(document).ready(function () {
     }
   }
   function addErrorByName(form, input__name, error_text) {
-    var input = form.find('[name="' + input__name + '"]');
+    const input = form.find('[name="' + input__name + '"]');
     input.attr("data-error", error_text);
     addError(input);
   }
@@ -386,13 +389,28 @@ function changeURLLanguage() {
 function changeLanguage() {
   let hash = window.location.hash;
   hash = hash.substr(1);
-  console.log(hash);
   if (!allLang.includes(hash)) {
     location.href = window.location.pathname + "#en";
     location.reload();
   }
 
   select.value = hash;
+  document
+    .querySelectorAll(".link-title1")
+    .forEach((el) => (el.innerHTML = langArr["work-btn-text1"][hash]));
+  document
+    .querySelectorAll(".link-title2")
+    .forEach((el) => (el.innerHTML = langArr["work-btn-text2"][hash]));
+  // document.getElementByName("Name").innerHTML =
+  //   langArr["contact-input-name"][hash];
+  // document.getElementByName("Email").innerHTML =
+  //   langArr["contact-input-email"][hash];
+  // document.getElementByName("Message").innerHTML =
+  //   langArr["contact-input-message"][hash];
+  const inputs = document.querySelectorAll(".input");
+  inputs[0].dataset.value = langArr["contact-input-name"][hash];
+  inputs[1].dataset.value = langArr["contact-input-email"][hash];
+  inputs[2].dataset.value = langArr["contact-input-message"][hash];
   for (let key in langArr) {
     let elem = document.querySelector(".lng-" + key);
     if (elem) {
@@ -416,6 +434,8 @@ function changeLanguage() {
 }
 
 changeLanguage();
+
+AOS.init();
 
 function makeHeaderFixed() {
   window.addEventListener("scroll", function () {

@@ -161,6 +161,14 @@ body.lock {
 	}
 }
 
+#particles {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
 .header {
 	display: -webkit-box;
 	display: -ms-flexbox;
@@ -169,11 +177,7 @@ body.lock {
 	-webkit-box-direction: normal;
 	    -ms-flex-direction: column;
 	        flex-direction: column;
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
+	position: relative;
 }
 .header__row {
 	padding: 40px 0 30px;
@@ -393,8 +397,10 @@ body.lock {
 	content: "";
 	width: 100%;
 }
-.menu__link.active {
-	color: #e29500;
+@media (min-width: 767.98px) {
+	.menu__link.active {
+		color: #e29500;
+	}
 }
 @media (max-width: 767.98px) {
 	.menu__link {
@@ -405,12 +411,30 @@ body.lock {
 	}
 }
 
+.burger {
+	padding: 30px;
+	border-radius: 50%;
+	background-color: #00c4f0;
+	position: fixed;
+	top: 15px;
+	right: 20px;
+	width: 40px;
+	height: 28px;
+	z-index: 500;
+	display: none;
+}
+@media (max-width: 767.98px) {
+	.burger {
+		display: block;
+	}
+}
+
 .icon-menu {
 	display: none;
 	z-index: 500;
 	position: fixed;
-	top: 18px;
-	right: 10px;
+	top: 35px;
+	right: 35px;
 	width: 30px;
 	height: 18px;
 	cursor: pointer;
@@ -429,7 +453,7 @@ body.lock {
 	position: absolute;
 	width: 100%;
 	height: 2px;
-	background-color: #eee;
+	background-color: #2a2a2a;
 }
 .icon-menu span:first-child {
 	top: 0px;
@@ -442,7 +466,6 @@ body.lock {
 	-ms-transform: scale(0);
 	-webkit-transform: scale(0);
 	transform: scale(0);
-	background-color: #000;
 }
 .icon-menu.active span:first-child {
 	-ms-transform: rotate(-45deg);
@@ -496,30 +519,6 @@ body.lock {
 	border-color: #e29500;
 }
 
-/*
-	Стиль иконки бургера
-	.icon-menu{
-		display: block;
-		position: absolute;
-		top: 18px;
-		right: 10px;
-		width
-		:30px;
-		height: 18px;
-		cursor: pointer;
-		z-index: 5;
-		span{@include anim(0.3s,0s);top: 8px;left: 0px;position: absolute;width: 100%;height: 2px;background-color: #000;
-			&:first-child{top: 0px;}
-			&:last-child{top: auto;bottom: 0px;}
-		}
-		&.active{
-			span{@include scale(0);
-				&:first-child{@include rotate(-45deg);top: 8px;}
-				&:last-child{@include rotate(45deg);bottom: 8px;}
-			}
-		}
-	}
-*/
 .footer {
 	background: -o-linear-gradient(319.32deg, #414141 0%, #2d2d2d 100.52%);
 	background: linear-gradient(130.68deg, #414141 0%, #2d2d2d 100.52%);
@@ -643,19 +642,11 @@ body.lock {
 	        justify-content: center;
 	padding: 30px;
 	margin: 0px 20px 30px 20px;
-	position: relative;
-	top: 0;
-	-webkit-transition: all 0.3s ease;
-	-o-transition: all 0.3s ease;
-	transition: all 0.3s ease;
 }
 @media (max-width: 767.98px) {
 	.skills__block {
 		margin: 0px 10px 20px 10px;
 	}
-}
-.skills__block:hover {
-	top: -5px;
 }
 .skills__logo {
 	margin: 0px 0px 25px 0px;
@@ -679,7 +670,7 @@ body.lock {
 }
 
 .about {
-	padding: 70px 0px 113px 0px;
+	padding: 113px 0px 113px 0px;
 	background: #2d2d2d;
 }
 .about__block {
@@ -1266,14 +1257,6 @@ body.lock {
 
 .slick-next {
 	background: #e29500 url("../img/arrow-next.svg") 50% 50% no-repeat;
-}
-
-.particles {
-	pointer-events: none;
-}
-
-.particles-js-canvas-el {
-	height: 100vh !important;
 }
 
 .loader {

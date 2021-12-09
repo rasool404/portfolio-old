@@ -137,19 +137,11 @@ const langArr = {
     Интернет-магазин написан на react и node js. <br />
     Многофункциональный и простой в использовании.`,
   },
-  "work-1-btn-text1": {
+  "work-btn-text1": {
     en: "Visit",
     ru: "Открыть",
   },
-  "work-1-btn-text2": {
-    en: "View It",
-    ru: "Посмотреть",
-  },
-  "work-2-btn-text1": {
-    en: "Visit",
-    ru: "Открыть",
-  },
-  "work-2-btn-text2": {
+  "work-btn-text2": {
     en: "View It",
     ru: "Посмотреть",
   },
@@ -178,6 +170,18 @@ const langArr = {
   "contact-social": {
     en: "Feeling social? Find me on these online spaces too!",
     ru: "Чувствуете себя социальным? Найдите меня и на этих онлайн-площадках!",
+  },
+  "contact-input-name": {
+    en: "Name*",
+    ru: "Имя*",
+  },
+  "contact-input-email": {
+    en: "Email*",
+    ru: "Email*",
+  },
+  "contact-input-message": {
+    en: "Message*",
+    ru: "Сообщение*",
   },
   "footer-copyright": {
     en: `&copy; Copyright 2021. All right reserved`,
