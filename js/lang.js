@@ -191,4 +191,30 @@ const langArr = {
     en: "Contact:",
     ru: "Контакты:",
   },
+  "work-3-title": {
+    en: "Smart watches website",
+    ru: "Cайт про смарт часов",
+  },
+  "work-3-descr": {
+    en: `Adaptive. <br>
+    Stack: HTML5, SCSS, Gulp, JavaScript`,
+    ru: `Адаптивная вёрстка.<br>
+    Стек: HTML5, SCSS, Gulp, JavaScript`,
+  },
+  "work-4-title": {
+    en: "Adaptive layout and animation of a PC assembly site",
+    ru: "Адаптивная вёрстка и анимация сайта по сборке ПК",
+  },
+  "work-4-descr": {
+    en: `PC assembly landing page <br><br>
+
+    <b>Stack for this job:</b> html/css/js/jquery/gulp/scss/BEM <br><br>
+    
+    <b>Animations:</b> JS CSS`,
+    ru: `Лендинг по сборке ПК <br><br>
+
+    Стэк для данной работы: html/css/js/jquery/gulp/scss/БЭМ <br><br>
+    
+    Анимации: JS CSS`,
+  },
 };
