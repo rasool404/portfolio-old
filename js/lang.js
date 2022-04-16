@@ -184,8 +184,8 @@ const langArr = {
     ru: "Сообщение*",
   },
   "footer-copyright": {
-    en: `&copy; Copyright 2021. All right reserved`,
-    ru: `&copy; Copyright 2021. Все права защищены.`,
+    en: `&copy; 2021 - ${new Date().getFullYear()}. All right reserved`,
+    ru: `&copy; 2021 - ${new Date().getFullYear()}. Все права защищены.`,
   },
   "footer-contact": {
     en: "Contact:",
